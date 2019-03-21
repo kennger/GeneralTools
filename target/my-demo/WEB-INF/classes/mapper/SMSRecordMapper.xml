@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cx.dao.SMSRecordDao" >
+  <resultMap id="BaseResultMap" type="com.cx.pojo.SMSRecord" >
+    <result column="_id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="send_type" property="sendType" jdbcType="SMALLINT" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="other_num" property="otherNum" jdbcType="VARCHAR" />
+    <result column="other_name" property="otherName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="content_title" property="contentTitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, user_id, send_type, send_time, other_num, other_name, content, version, ctime, 
+    mtime, creater, isdel, content_title
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cx.pojo.SMSRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dwd_risk_appuser_sms_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.cx.pojo.SMSRecord" >
+    insert into dwd_risk_appuser_sms_record (_id, user_id, send_type, 
+      send_time, other_num, other_name, 
+      content, version, ctime, 
+      mtime, creater, isdel, 
+      content_title)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{sendType,jdbcType=SMALLINT}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{otherNum,jdbcType=VARCHAR}, #{otherName,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{mtime,jdbcType=TIMESTAMP}, #{creater,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER}, 
+      #{contentTitle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cx.pojo.SMSRecord" >
+    insert into dwd_risk_appuser_sms_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sendType != null" >
+        send_type,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="otherNum != null" >
+        other_num,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="contentTitle != null" >
+        content_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null" >
+        #{sendType,jdbcType=SMALLINT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherNum != null" >
+        #{otherNum,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=INTEGER},
+      </if>
+      <if test="contentTitle != null" >
+        #{contentTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cx.pojo.SMSRecordExample" resultType="java.lang.Integer" >
+    select count(*) from dwd_risk_appuser_sms_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <select id="getAllOfSMSUserId" parameterType="com.cx.pojo.SMSRecordExample" resultType="java.lang.String" >
+    select user_id from dwd_risk_appuser_sms_record
+    group by user_id
+
+  </select>
+  
+</mapper>
