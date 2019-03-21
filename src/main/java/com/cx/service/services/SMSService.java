@@ -127,9 +127,6 @@ public class SMSService {
             smsLoanPlatform.setMtime(new Date());
             smsLoanPlatformDao.updateContentTitle(smsLoanPlatform);
 
-//            if(i>30){
-//                break;
-//            }
             System.out.println(i+1+" "+id+" "+ contentTitle+" "+ phonePlatform);
         }
 
