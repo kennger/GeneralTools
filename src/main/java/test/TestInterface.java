@@ -63,6 +63,7 @@ public class TestInterface {
 
     @Test
     public void testOfUserID(){
+
         System.out.println(nativeDomain.getAllOfSMSUserId());
         System.out.println(nativeDomain.getAllOfSMSUserId().size());
     }
