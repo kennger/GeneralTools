@@ -30,8 +30,8 @@
 						<value>application/json;charset=UTF-8</value>
 					</list>
 				</property>
-				<property name="objectMapper" ref="objectMapper">
-				</property>
+				<!--<property name="objectMapper" ref="objectMapper">-->
+				<!--</property>-->
 
 			</bean>
 		</mvc:message-converters>
