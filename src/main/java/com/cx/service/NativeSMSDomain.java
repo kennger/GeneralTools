@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("nativeDomain")
-public class NativeDomain implements SMSDomain  {
+public class NativeSMSDomain implements SMSDomain  {
 
     @Resource
     private SMSService smsService;

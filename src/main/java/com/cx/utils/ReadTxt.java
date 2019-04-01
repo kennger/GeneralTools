@@ -90,49 +90,49 @@ public class ReadTxt {
     }
 
    public static void main(String args[]) {
-        ReadTxt readTxt = new ReadTxt();
-        String str = "您尾号0316信用卡09/17-10/16账单应还款额￥7968.00，最低还款额￥804.90，到期还款日11月10日。截止11月10日本期剩余应还款额￥7968.00，剩余最低还款额￥804.90。请确保到期还款日全天还款卡余额充足。【交通银行】";
-        System.out.println(readTxt.getCashFlowFromSMS(str));
-//        try { // 防止文件建立或读取失败，用catch捕捉错误并打印，也可以throw
-//
-//           /* 读入TXT文件 */
-//           String pathname = "C:\\Users\\Administrator\\Desktop\\sms.txt"; // 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径
-//           File filename = new File(pathname); // 要读取以上路径的input。txt文件
-//           InputStreamReader reader = new InputStreamReader(
-//                   new FileInputStream(filename)); // 建立一个输入流对象reader
-//           BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
-//           String line = "";
-//           line = br.readLine();
-//
-//           String userId ="";
-//           String content ="";
-//           String result ="";
-//           int i =0;
-//           ReadTxt readTxt = new ReadTxt();
-//           while (line != null) {
-//               line = br.readLine(); // 一次读入一行数据
-//               String [] lineSpilt =line.split("\\t");
-//               userId = lineSpilt[0];
-//               content = lineSpilt[1];
-//               result = readTxt.smsParse(content);
-//               i++;
-//               System.out.println(i+" "+userId+" "+result);
-//
-////                if (i>10){
-////                    break;
-////                }
-//               /* 写入Txt文件 */
-//                File writename = new File("C:\\Users\\Administrator\\Desktop\\output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
-//                writename.createNewFile(); // 创建新文件
-//                BufferedWriter out = new BufferedWriter(new FileWriter(writename,true));
-//                out.write(i+" "+userId+" "+result+"\r\n"); // \r\n即为换行
-//                out.flush(); // 把缓存区内容压入文件
-//                out.close(); // 最后记得关闭文件
-//           }
-//           br.close();
-//
-//       } catch (Exception e) {
-//           e.printStackTrace();
-//       }
+//        ReadTxt readTxt = new ReadTxt();
+//        String str = "您尾号0316信用卡09/17-10/16账单应还款额￥7968.00，最低还款额￥804.90，到期还款日11月10日。截止11月10日本期剩余应还款额￥7968.00，剩余最低还款额￥804.90。请确保到期还款日全天还款卡余额充足。【交通银行】";
+//        System.out.println(readTxt.getCashFlowFromSMS(str));
+        try { // 防止文件建立或读取失败，用catch捕捉错误并打印，也可以throw
+
+           /* 读入TXT文件 */
+           String pathname = "C:\\Users\\Administrator\\Desktop\\sms.txt"; // 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径
+           File filename = new File(pathname); // 要读取以上路径的input。txt文件
+           InputStreamReader reader = new InputStreamReader(
+                   new FileInputStream(filename)); // 建立一个输入流对象reader
+           BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+           String line = "";
+           line = br.readLine();
+
+           String userId ="";
+           String content ="";
+           String result ="";
+           int i =0;
+           ReadTxt readTxt = new ReadTxt();
+           while (line != null) {
+               line = br.readLine(); // 一次读入一行数据
+               String [] lineSpilt =line.split("\\t");
+               userId = lineSpilt[0];
+               content = lineSpilt[1];
+               result = readTxt.smsParse(content);
+               i++;
+               System.out.println(i+" "+userId+" "+result);
+
+//                if (i>10){
+//                    break;
+//                }
+               /* 写入Txt文件 */
+                File writename = new File("C:\\Users\\Administrator\\Desktop\\output.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
+                writename.createNewFile(); // 创建新文件
+                BufferedWriter out = new BufferedWriter(new FileWriter(writename,true));
+                out.write(i+" "+userId+" "+result+"\r\n"); // \r\n即为换行
+                out.flush(); // 把缓存区内容压入文件
+                out.close(); // 最后记得关闭文件
+           }
+           br.close();
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 }

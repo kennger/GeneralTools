@@ -1,6 +1,5 @@
 package com.cx.domain;
 
-import com.cx.pojo.SMSLoanPlatform;
 
 import java.util.List;
 import java.util.Map;

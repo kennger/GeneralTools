@@ -26,7 +26,7 @@ public class POIController {
         cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
         cell.setCellValue(new Date());
         cell.setCellStyle(cellStyle);
-        OutputStream os = new FileOutputStream("C:\\Users\\tn-13\\Desktop\\poi\\wb.xlsx");
+        OutputStream os = new FileOutputStream("C:\\Users\\admin\\Desktop\\wb.xls");
         wb.write(os);
 
     }

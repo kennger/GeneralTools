@@ -53,6 +53,7 @@
             <%--<td>${bean.sName }</td>--%>
             <%--<td>${bean.sText }</td>--%>
             <%--<td>${bean.sAge }</td>--%>
+
         </tr>
         </tbody>
     </c:forEach>

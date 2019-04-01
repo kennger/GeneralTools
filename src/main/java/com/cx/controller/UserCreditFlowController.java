@@ -1,6 +1,6 @@
 package com.cx.controller;
 
-import com.cx.service.NativeDomain;
+import com.cx.service.NativeSMSDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +14,13 @@ public class UserCreditFlowController {
 
 
     @Autowired
-    private NativeDomain nativeDomain;
+    private NativeSMSDomain nativeSMSDomain;
 
     @RequestMapping("/getAllUserId")
     public ModelAndView toIndex() {
 
         ModelAndView mav = new ModelAndView();
-        List<String> list = nativeDomain.getAllOfSMSUserId();
+        List<String> list = nativeSMSDomain.getAllOfSMSUserId();
         mav.addObject("bean", list);
         mav.setViewName("userCreditFlow");
         return mav;
