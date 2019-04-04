@@ -74,5 +74,7 @@ public interface UserLoanContactsDao {
 
     String getPhoneByUserId(String userId);
 
+    String getUserIdByPhone(String phone);
+
     int selectByPhone(String phone);
 }

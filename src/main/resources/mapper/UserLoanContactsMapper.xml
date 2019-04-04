@@ -182,4 +182,10 @@
     select count(*) from user_loan_contacts
     where telephone =#{telephone,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="getUserIdByPhone" parameterType="java.lang.String" resultType="java.lang.String" >
+    select user_id from user_loan_contacts
+    where telephone =#{phone}
+  </select>
 </mapper>

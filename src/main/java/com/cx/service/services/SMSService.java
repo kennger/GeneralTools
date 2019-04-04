@@ -133,8 +133,8 @@ public class SMSService {
 
     }
 
-    public List<String> getAllOfSMSUserId(){
+    public List<String> getAllOfSMSUserId(int start ) {
 
-        return smsRecordDao.getAllOfSMSUserId();
+        return smsRecordDao.getAllOfSMSUserId(start);
     }
 }

@@ -40,14 +40,6 @@ public class CallRecordService {
                     }
                 }
 
-//                  if(contactList.length>0){
-//                      for(int i=0;i<contactList.length;i++){
-//                          int userLoanContacts = userLoanContactsDao.selectByPhone(contactList[i]);
-//                          if(userLoanContacts>0&&!phone.equals(contactList[i])){
-//                              listOfContactsLoanTelephone.add(contactList[i]);
-//                          }
-//                      }
-//                  }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -61,5 +53,6 @@ public class CallRecordService {
         list.addAll(h);
         return list;
     }
+
 
 }

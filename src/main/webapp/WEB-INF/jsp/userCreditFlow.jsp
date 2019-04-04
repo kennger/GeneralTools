@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <html>
 <head>
     <title>CHUANGJIN smsInfo show ...</title>
@@ -26,6 +28,40 @@
             border: 1px solid #ccc;
             height: 25px;
         }
+
+         .table{
+             width:100%;
+             max-width: 100%;
+         }
+        .table>thead>tr{
+            background: #edf7ff;
+        }
+        .table>thead>tr>th {
+            white-space: nowrap;
+            padding: 8px;
+            line-height: 1.42857143;
+        }
+
+        .table>tbody>tr:nth-child(odd){
+            background: #fff;
+        }
+        .table>tbody>tr:nth-child(even){
+            background: #f7f7f7;
+        }
+        .table>tbody>tr:hover{
+            background: #e3ecfc;
+        }
+        .table-cont{
+            /**make table can scroll**/
+            max-height: 500px;
+            overflow: auto;
+            /** add some style**/
+            /*padding: 2px;*/
+            background: #ddd;
+            margin: 20px 10px;
+            border: 1px solid #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -37,6 +73,7 @@
 <br />
 <br />
 <br />
+
 <table>
     <thead>
     <tr>
@@ -46,17 +83,19 @@
         <td>sAge</td>
     </tr>
     </thead>
-    <c:forEach items="${bean}" var="bean">
-        <tbody>
+    <tbody>
+    <c:forEach items="${bean}" var="beanItem">
+
         <tr>
-            <td>${bean}</td>
+            <td>${beanItem}</td>
             <%--<td>${bean.sName }</td>--%>
             <%--<td>${bean.sText }</td>--%>
             <%--<td>${bean.sAge }</td>--%>
 
         </tr>
-        </tbody>
+
     </c:forEach>
+    </tbody>
 </table>
 </body>
 </html>

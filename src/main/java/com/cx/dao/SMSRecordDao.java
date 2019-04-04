@@ -31,5 +31,5 @@ public interface SMSRecordDao {
     List<SMSRecord> selectByExample(SMSRecordExample example);
 
 
-    List<String> getAllOfSMSUserId();
+    List<String> getAllOfSMSUserId( int start);
 }

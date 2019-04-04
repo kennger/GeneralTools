@@ -168,10 +168,10 @@
     </if>
   </select>
 
-  <select id="getAllOfSMSUserId" parameterType="com.cx.pojo.SMSRecordExample" resultType="java.lang.String" >
+  <select id="getAllOfSMSUserId" parameterType="java.lang.Integer" resultType="java.lang.String" >
     select user_id from dwd_risk_appuser_sms_record
     group by user_id
-
+    limit #{start},50
   </select>
   
 </mapper>

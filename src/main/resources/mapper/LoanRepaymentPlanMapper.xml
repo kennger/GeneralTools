@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cx.dao.LoanRepaymentPlanDao" >
+  <resultMap id="BaseResultMap" type="com.cx.pojo.LoanRepaymentPlan" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="repayment_content" property="repaymentContent" jdbcType="SMALLINT" />
+    <result column="contract_number" property="contractNumber" jdbcType="VARCHAR" />
+    <result column="repayment_plan_code" property="repaymentPlanCode" jdbcType="VARCHAR" />
+    <result column="is_refund" property="isRefund" jdbcType="SMALLINT" />
+    <result column="period" property="period" jdbcType="SMALLINT" />
+    <result column="repayment_due_date" property="repaymentDueDate" jdbcType="DATE" />
+    <result column="repayment_status" property="repaymentStatus" jdbcType="INTEGER" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="DATE" />
+    <result column="receivable_principal" property="receivablePrincipal" jdbcType="DECIMAL" />
+    <result column="receivable_handling_charge" property="receivableHandlingCharge" jdbcType="DECIMAL" />
+    <result column="receivable_interest" property="receivableInterest" jdbcType="DECIMAL" />
+    <result column="receivable_total" property="receivableTotal" jdbcType="DECIMAL" />
+    <result column="interest_free_coupon_reduce_handling_charge" property="interestFreeCouponReduceHandlingCharge" jdbcType="DECIMAL" />
+    <result column="interest_free_coupon_reduce_interest" property="interestFreeCouponReduceInterest" jdbcType="DECIMAL" />
+    <result column="interest_free_coupon_number" property="interestFreeCouponNumber" jdbcType="BIGINT" />
+    <result column="overdue_days" property="overdueDays" jdbcType="SMALLINT" />
+    <result column="overdue_type" property="overdueType" jdbcType="SMALLINT" />
+    <result column="receivable_penalty" property="receivablePenalty" jdbcType="DECIMAL" />
+    <result column="manual_modify_reduce_handling_charge" property="manualModifyReduceHandlingCharge" jdbcType="DECIMAL" />
+    <result column="manual_modify_reduce_interest" property="manualModifyReduceInterest" jdbcType="DECIMAL" />
+    <result column="manual_modify_reduce_penalty" property="manualModifyReducePenalty" jdbcType="DECIMAL" />
+    <result column="prepayment_reduce_handling_charge" property="prepaymentReduceHandlingCharge" jdbcType="DECIMAL" />
+    <result column="prepayment_reduce_interest" property="prepaymentReduceInterest" jdbcType="DECIMAL" />
+    <result column="prepayment_receivable_penalty" property="prepaymentReceivablePenalty" jdbcType="DECIMAL" />
+    <result column="repayment_coupon_reduce_principal" property="repaymentCouponReducePrincipal" jdbcType="DECIMAL" />
+    <result column="repayment_coupon_reduce_handling_charge" property="repaymentCouponReduceHandlingCharge" jdbcType="DECIMAL" />
+    <result column="repayment_coupon_reduce_interest" property="repaymentCouponReduceInterest" jdbcType="DECIMAL" />
+    <result column="collection_reduce_principal" property="collectionReducePrincipal" jdbcType="DECIMAL" />
+    <result column="collection_reduce_handling_charge" property="collectionReduceHandlingCharge" jdbcType="DECIMAL" />
+    <result column="collection_reduce_interest" property="collectionReduceInterest" jdbcType="DECIMAL" />
+    <result column="collection_reduce_penalty" property="collectionReducePenalty" jdbcType="DECIMAL" />
+    <result column="actual_repayment_principal" property="actualRepaymentPrincipal" jdbcType="DECIMAL" />
+    <result column="actual_repayment_handling_charge" property="actualRepaymentHandlingCharge" jdbcType="DECIMAL" />
+    <result column="actual_repayment_interest" property="actualRepaymentInterest" jdbcType="DECIMAL" />
+    <result column="actual_repayment_penalty" property="actualRepaymentPenalty" jdbcType="DECIMAL" />
+    <result column="actual_prepayment_penalty" property="actualPrepaymentPenalty" jdbcType="DECIMAL" />
+    <result column="actual_repayment_total" property="actualRepaymentTotal" jdbcType="DECIMAL" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+    <result column="rtime" property="rtime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="BIGINT" />
+    <result column="updater" property="updater" jdbcType="BIGINT" />
+    <result column="isdel" property="isdel" jdbcType="SMALLINT" />
+    <result column="periods" property="periods" jdbcType="SMALLINT" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="third_account_id" property="thirdAccountId" jdbcType="VARCHAR" />
+    <result column="third_charge" property="thirdCharge" jdbcType="DECIMAL" />
+    <result column="platform_charge" property="platformCharge" jdbcType="DECIMAL" />
+    <result column="is_compensatory" property="isCompensatory" jdbcType="INTEGER" />
+    <result column="compensatory_time" property="compensatoryTime" jdbcType="TIMESTAMP" />
+    <result column="combination_fee" property="combinationFee" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, repayment_content, contract_number, repayment_plan_code, is_refund, 
+    period, repayment_due_date, repayment_status, repayment_date, receivable_principal, 
+    receivable_handling_charge, receivable_interest, receivable_total, interest_free_coupon_reduce_handling_charge, 
+    interest_free_coupon_reduce_interest, interest_free_coupon_number, overdue_days, 
+    overdue_type, receivable_penalty, manual_modify_reduce_handling_charge, manual_modify_reduce_interest, 
+    manual_modify_reduce_penalty, prepayment_reduce_handling_charge, prepayment_reduce_interest, 
+    prepayment_receivable_penalty, repayment_coupon_reduce_principal, repayment_coupon_reduce_handling_charge, 
+    repayment_coupon_reduce_interest, collection_reduce_principal, collection_reduce_handling_charge, 
+    collection_reduce_interest, collection_reduce_penalty, actual_repayment_principal, 
+    actual_repayment_handling_charge, actual_repayment_interest, actual_repayment_penalty, 
+    actual_prepayment_penalty, actual_repayment_total, version, ctime, mtime, rtime, 
+    creater, updater, isdel, periods, channel, third_account_id, third_charge, platform_charge, 
+    is_compensatory, compensatory_time, combination_fee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cx.pojo.LoanRepaymentPlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from loan_repayment_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from loan_repayment_plan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from loan_repayment_plan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cx.pojo.LoanRepaymentPlan" >
+    insert into loan_repayment_plan (id, user_id, repayment_content, 
+      contract_number, repayment_plan_code, is_refund, 
+      period, repayment_due_date, repayment_status, 
+      repayment_date, receivable_principal, receivable_handling_charge, 
+      receivable_interest, receivable_total, interest_free_coupon_reduce_handling_charge, 
+      interest_free_coupon_reduce_interest, interest_free_coupon_number, 
+      overdue_days, overdue_type, receivable_penalty, 
+      manual_modify_reduce_handling_charge, manual_modify_reduce_interest, 
+      manual_modify_reduce_penalty, prepayment_reduce_handling_charge, 
+      prepayment_reduce_interest, prepayment_receivable_penalty, 
+      repayment_coupon_reduce_principal, repayment_coupon_reduce_handling_charge, 
+      repayment_coupon_reduce_interest, collection_reduce_principal, 
+      collection_reduce_handling_charge, collection_reduce_interest, 
+      collection_reduce_penalty, actual_repayment_principal, 
+      actual_repayment_handling_charge, actual_repayment_interest, 
+      actual_repayment_penalty, actual_prepayment_penalty, 
+      actual_repayment_total, version, ctime, 
+      mtime, rtime, creater, 
+      updater, isdel, periods, 
+      channel, third_account_id, third_charge, 
+      platform_charge, is_compensatory, compensatory_time, 
+      combination_fee)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{repaymentContent,jdbcType=SMALLINT}, 
+      #{contractNumber,jdbcType=VARCHAR}, #{repaymentPlanCode,jdbcType=VARCHAR}, #{isRefund,jdbcType=SMALLINT}, 
+      #{period,jdbcType=SMALLINT}, #{repaymentDueDate,jdbcType=DATE}, #{repaymentStatus,jdbcType=INTEGER}, 
+      #{repaymentDate,jdbcType=DATE}, #{receivablePrincipal,jdbcType=DECIMAL}, #{receivableHandlingCharge,jdbcType=DECIMAL}, 
+      #{receivableInterest,jdbcType=DECIMAL}, #{receivableTotal,jdbcType=DECIMAL}, #{interestFreeCouponReduceHandlingCharge,jdbcType=DECIMAL}, 
+      #{interestFreeCouponReduceInterest,jdbcType=DECIMAL}, #{interestFreeCouponNumber,jdbcType=BIGINT}, 
+      #{overdueDays,jdbcType=SMALLINT}, #{overdueType,jdbcType=SMALLINT}, #{receivablePenalty,jdbcType=DECIMAL}, 
+      #{manualModifyReduceHandlingCharge,jdbcType=DECIMAL}, #{manualModifyReduceInterest,jdbcType=DECIMAL}, 
+      #{manualModifyReducePenalty,jdbcType=DECIMAL}, #{prepaymentReduceHandlingCharge,jdbcType=DECIMAL}, 
+      #{prepaymentReduceInterest,jdbcType=DECIMAL}, #{prepaymentReceivablePenalty,jdbcType=DECIMAL}, 
+      #{repaymentCouponReducePrincipal,jdbcType=DECIMAL}, #{repaymentCouponReduceHandlingCharge,jdbcType=DECIMAL}, 
+      #{repaymentCouponReduceInterest,jdbcType=DECIMAL}, #{collectionReducePrincipal,jdbcType=DECIMAL}, 
+      #{collectionReduceHandlingCharge,jdbcType=DECIMAL}, #{collectionReduceInterest,jdbcType=DECIMAL}, 
+      #{collectionReducePenalty,jdbcType=DECIMAL}, #{actualRepaymentPrincipal,jdbcType=DECIMAL}, 
+      #{actualRepaymentHandlingCharge,jdbcType=DECIMAL}, #{actualRepaymentInterest,jdbcType=DECIMAL}, 
+      #{actualRepaymentPenalty,jdbcType=DECIMAL}, #{actualPrepaymentPenalty,jdbcType=DECIMAL}, 
+      #{actualRepaymentTotal,jdbcType=DECIMAL}, #{version,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{mtime,jdbcType=TIMESTAMP}, #{rtime,jdbcType=TIMESTAMP}, #{creater,jdbcType=BIGINT}, 
+      #{updater,jdbcType=BIGINT}, #{isdel,jdbcType=SMALLINT}, #{periods,jdbcType=SMALLINT}, 
+      #{channel,jdbcType=VARCHAR}, #{thirdAccountId,jdbcType=VARCHAR}, #{thirdCharge,jdbcType=DECIMAL}, 
+      #{platformCharge,jdbcType=DECIMAL}, #{isCompensatory,jdbcType=INTEGER}, #{compensatoryTime,jdbcType=TIMESTAMP}, 
+      #{combinationFee,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cx.pojo.LoanRepaymentPlan" >
+    insert into loan_repayment_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="repaymentContent != null" >
+        repayment_content,
+      </if>
+      <if test="contractNumber != null" >
+        contract_number,
+      </if>
+      <if test="repaymentPlanCode != null" >
+        repayment_plan_code,
+      </if>
+      <if test="isRefund != null" >
+        is_refund,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="repaymentDueDate != null" >
+        repayment_due_date,
+      </if>
+      <if test="repaymentStatus != null" >
+        repayment_status,
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="receivablePrincipal != null" >
+        receivable_principal,
+      </if>
+      <if test="receivableHandlingCharge != null" >
+        receivable_handling_charge,
+      </if>
+      <if test="receivableInterest != null" >
+        receivable_interest,
+      </if>
+      <if test="receivableTotal != null" >
+        receivable_total,
+      </if>
+      <if test="interestFreeCouponReduceHandlingCharge != null" >
+        interest_free_coupon_reduce_handling_charge,
+      </if>
+      <if test="interestFreeCouponReduceInterest != null" >
+        interest_free_coupon_reduce_interest,
+      </if>
+      <if test="interestFreeCouponNumber != null" >
+        interest_free_coupon_number,
+      </if>
+      <if test="overdueDays != null" >
+        overdue_days,
+      </if>
+      <if test="overdueType != null" >
+        overdue_type,
+      </if>
+      <if test="receivablePenalty != null" >
+        receivable_penalty,
+      </if>
+      <if test="manualModifyReduceHandlingCharge != null" >
+        manual_modify_reduce_handling_charge,
+      </if>
+      <if test="manualModifyReduceInterest != null" >
+        manual_modify_reduce_interest,
+      </if>
+      <if test="manualModifyReducePenalty != null" >
+        manual_modify_reduce_penalty,
+      </if>
+      <if test="prepaymentReduceHandlingCharge != null" >
+        prepayment_reduce_handling_charge,
+      </if>
+      <if test="prepaymentReduceInterest != null" >
+        prepayment_reduce_interest,
+      </if>
+      <if test="prepaymentReceivablePenalty != null" >
+        prepayment_receivable_penalty,
+      </if>
+      <if test="repaymentCouponReducePrincipal != null" >
+        repayment_coupon_reduce_principal,
+      </if>
+      <if test="repaymentCouponReduceHandlingCharge != null" >
+        repayment_coupon_reduce_handling_charge,
+      </if>
+      <if test="repaymentCouponReduceInterest != null" >
+        repayment_coupon_reduce_interest,
+      </if>
+      <if test="collectionReducePrincipal != null" >
+        collection_reduce_principal,
+      </if>
+      <if test="collectionReduceHandlingCharge != null" >
+        collection_reduce_handling_charge,
+      </if>
+      <if test="collectionReduceInterest != null" >
+        collection_reduce_interest,
+      </if>
+      <if test="collectionReducePenalty != null" >
+        collection_reduce_penalty,
+      </if>
+      <if test="actualRepaymentPrincipal != null" >
+        actual_repayment_principal,
+      </if>
+      <if test="actualRepaymentHandlingCharge != null" >
+        actual_repayment_handling_charge,
+      </if>
+      <if test="actualRepaymentInterest != null" >
+        actual_repayment_interest,
+      </if>
+      <if test="actualRepaymentPenalty != null" >
+        actual_repayment_penalty,
+      </if>
+      <if test="actualPrepaymentPenalty != null" >
+        actual_prepayment_penalty,
+      </if>
+      <if test="actualRepaymentTotal != null" >
+        actual_repayment_total,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="rtime != null" >
+        rtime,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="updater != null" >
+        updater,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="thirdAccountId != null" >
+        third_account_id,
+      </if>
+      <if test="thirdCharge != null" >
+        third_charge,
+      </if>
+      <if test="platformCharge != null" >
+        platform_charge,
+      </if>
+      <if test="isCompensatory != null" >
+        is_compensatory,
+      </if>
+      <if test="compensatoryTime != null" >
+        compensatory_time,
+      </if>
+      <if test="combinationFee != null" >
+        combination_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="repaymentContent != null" >
+        #{repaymentContent,jdbcType=SMALLINT},
+      </if>
+      <if test="contractNumber != null" >
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanCode != null" >
+        #{repaymentPlanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null" >
+        #{isRefund,jdbcType=SMALLINT},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=SMALLINT},
+      </if>
+      <if test="repaymentDueDate != null" >
+        #{repaymentDueDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentStatus != null" >
+        #{repaymentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="receivablePrincipal != null" >
+        #{receivablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableHandlingCharge != null" >
+        #{receivableHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableInterest != null" >
+        #{receivableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableTotal != null" >
+        #{receivableTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponReduceHandlingCharge != null" >
+        #{interestFreeCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponReduceInterest != null" >
+        #{interestFreeCouponReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponNumber != null" >
+        #{interestFreeCouponNumber,jdbcType=BIGINT},
+      </if>
+      <if test="overdueDays != null" >
+        #{overdueDays,jdbcType=SMALLINT},
+      </if>
+      <if test="overdueType != null" >
+        #{overdueType,jdbcType=SMALLINT},
+      </if>
+      <if test="receivablePenalty != null" >
+        #{receivablePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReduceHandlingCharge != null" >
+        #{manualModifyReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReduceInterest != null" >
+        #{manualModifyReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReducePenalty != null" >
+        #{manualModifyReducePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReduceHandlingCharge != null" >
+        #{prepaymentReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReduceInterest != null" >
+        #{prepaymentReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReceivablePenalty != null" >
+        #{prepaymentReceivablePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReducePrincipal != null" >
+        #{repaymentCouponReducePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReduceHandlingCharge != null" >
+        #{repaymentCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReduceInterest != null" >
+        #{repaymentCouponReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReducePrincipal != null" >
+        #{collectionReducePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReduceHandlingCharge != null" >
+        #{collectionReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReduceInterest != null" >
+        #{collectionReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReducePenalty != null" >
+        #{collectionReducePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentPrincipal != null" >
+        #{actualRepaymentPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentHandlingCharge != null" >
+        #{actualRepaymentHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentInterest != null" >
+        #{actualRepaymentInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentPenalty != null" >
+        #{actualRepaymentPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPrepaymentPenalty != null" >
+        #{actualPrepaymentPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentTotal != null" >
+        #{actualRepaymentTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtime != null" >
+        #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=SMALLINT},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=SMALLINT},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdAccountId != null" >
+        #{thirdAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCharge != null" >
+        #{thirdCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="platformCharge != null" >
+        #{platformCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="isCompensatory != null" >
+        #{isCompensatory,jdbcType=INTEGER},
+      </if>
+      <if test="compensatoryTime != null" >
+        #{compensatoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="combinationFee != null" >
+        #{combinationFee,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cx.pojo.LoanRepaymentPlanExample" resultType="java.lang.Integer" >
+    select count(*) from loan_repayment_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cx.pojo.LoanRepaymentPlan" >
+    update loan_repayment_plan
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="repaymentContent != null" >
+        repayment_content = #{repaymentContent,jdbcType=SMALLINT},
+      </if>
+      <if test="contractNumber != null" >
+        contract_number = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentPlanCode != null" >
+        repayment_plan_code = #{repaymentPlanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null" >
+        is_refund = #{isRefund,jdbcType=SMALLINT},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=SMALLINT},
+      </if>
+      <if test="repaymentDueDate != null" >
+        repayment_due_date = #{repaymentDueDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentStatus != null" >
+        repayment_status = #{repaymentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="receivablePrincipal != null" >
+        receivable_principal = #{receivablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableHandlingCharge != null" >
+        receivable_handling_charge = #{receivableHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableInterest != null" >
+        receivable_interest = #{receivableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableTotal != null" >
+        receivable_total = #{receivableTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponReduceHandlingCharge != null" >
+        interest_free_coupon_reduce_handling_charge = #{interestFreeCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponReduceInterest != null" >
+        interest_free_coupon_reduce_interest = #{interestFreeCouponReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="interestFreeCouponNumber != null" >
+        interest_free_coupon_number = #{interestFreeCouponNumber,jdbcType=BIGINT},
+      </if>
+      <if test="overdueDays != null" >
+        overdue_days = #{overdueDays,jdbcType=SMALLINT},
+      </if>
+      <if test="overdueType != null" >
+        overdue_type = #{overdueType,jdbcType=SMALLINT},
+      </if>
+      <if test="receivablePenalty != null" >
+        receivable_penalty = #{receivablePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReduceHandlingCharge != null" >
+        manual_modify_reduce_handling_charge = #{manualModifyReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReduceInterest != null" >
+        manual_modify_reduce_interest = #{manualModifyReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="manualModifyReducePenalty != null" >
+        manual_modify_reduce_penalty = #{manualModifyReducePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReduceHandlingCharge != null" >
+        prepayment_reduce_handling_charge = #{prepaymentReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReduceInterest != null" >
+        prepayment_reduce_interest = #{prepaymentReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="prepaymentReceivablePenalty != null" >
+        prepayment_receivable_penalty = #{prepaymentReceivablePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReducePrincipal != null" >
+        repayment_coupon_reduce_principal = #{repaymentCouponReducePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReduceHandlingCharge != null" >
+        repayment_coupon_reduce_handling_charge = #{repaymentCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentCouponReduceInterest != null" >
+        repayment_coupon_reduce_interest = #{repaymentCouponReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReducePrincipal != null" >
+        collection_reduce_principal = #{collectionReducePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReduceHandlingCharge != null" >
+        collection_reduce_handling_charge = #{collectionReduceHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReduceInterest != null" >
+        collection_reduce_interest = #{collectionReduceInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="collectionReducePenalty != null" >
+        collection_reduce_penalty = #{collectionReducePenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentPrincipal != null" >
+        actual_repayment_principal = #{actualRepaymentPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentHandlingCharge != null" >
+        actual_repayment_handling_charge = #{actualRepaymentHandlingCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentInterest != null" >
+        actual_repayment_interest = #{actualRepaymentInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentPenalty != null" >
+        actual_repayment_penalty = #{actualRepaymentPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPrepaymentPenalty != null" >
+        actual_prepayment_penalty = #{actualPrepaymentPenalty,jdbcType=DECIMAL},
+      </if>
+      <if test="actualRepaymentTotal != null" >
+        actual_repayment_total = #{actualRepaymentTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtime != null" >
+        rtime = #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="updater != null" >
+        updater = #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="isdel != null" >
+        isdel = #{isdel,jdbcType=SMALLINT},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=SMALLINT},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdAccountId != null" >
+        third_account_id = #{thirdAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCharge != null" >
+        third_charge = #{thirdCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="platformCharge != null" >
+        platform_charge = #{platformCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="isCompensatory != null" >
+        is_compensatory = #{isCompensatory,jdbcType=INTEGER},
+      </if>
+      <if test="compensatoryTime != null" >
+        compensatory_time = #{compensatoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="combinationFee != null" >
+        combination_fee = #{combinationFee,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cx.pojo.LoanRepaymentPlan" >
+    update loan_repayment_plan
+    set user_id = #{userId,jdbcType=BIGINT},
+      repayment_content = #{repaymentContent,jdbcType=SMALLINT},
+      contract_number = #{contractNumber,jdbcType=VARCHAR},
+      repayment_plan_code = #{repaymentPlanCode,jdbcType=VARCHAR},
+      is_refund = #{isRefund,jdbcType=SMALLINT},
+      period = #{period,jdbcType=SMALLINT},
+      repayment_due_date = #{repaymentDueDate,jdbcType=DATE},
+      repayment_status = #{repaymentStatus,jdbcType=INTEGER},
+      repayment_date = #{repaymentDate,jdbcType=DATE},
+      receivable_principal = #{receivablePrincipal,jdbcType=DECIMAL},
+      receivable_handling_charge = #{receivableHandlingCharge,jdbcType=DECIMAL},
+      receivable_interest = #{receivableInterest,jdbcType=DECIMAL},
+      receivable_total = #{receivableTotal,jdbcType=DECIMAL},
+      interest_free_coupon_reduce_handling_charge = #{interestFreeCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      interest_free_coupon_reduce_interest = #{interestFreeCouponReduceInterest,jdbcType=DECIMAL},
+      interest_free_coupon_number = #{interestFreeCouponNumber,jdbcType=BIGINT},
+      overdue_days = #{overdueDays,jdbcType=SMALLINT},
+      overdue_type = #{overdueType,jdbcType=SMALLINT},
+      receivable_penalty = #{receivablePenalty,jdbcType=DECIMAL},
+      manual_modify_reduce_handling_charge = #{manualModifyReduceHandlingCharge,jdbcType=DECIMAL},
+      manual_modify_reduce_interest = #{manualModifyReduceInterest,jdbcType=DECIMAL},
+      manual_modify_reduce_penalty = #{manualModifyReducePenalty,jdbcType=DECIMAL},
+      prepayment_reduce_handling_charge = #{prepaymentReduceHandlingCharge,jdbcType=DECIMAL},
+      prepayment_reduce_interest = #{prepaymentReduceInterest,jdbcType=DECIMAL},
+      prepayment_receivable_penalty = #{prepaymentReceivablePenalty,jdbcType=DECIMAL},
+      repayment_coupon_reduce_principal = #{repaymentCouponReducePrincipal,jdbcType=DECIMAL},
+      repayment_coupon_reduce_handling_charge = #{repaymentCouponReduceHandlingCharge,jdbcType=DECIMAL},
+      repayment_coupon_reduce_interest = #{repaymentCouponReduceInterest,jdbcType=DECIMAL},
+      collection_reduce_principal = #{collectionReducePrincipal,jdbcType=DECIMAL},
+      collection_reduce_handling_charge = #{collectionReduceHandlingCharge,jdbcType=DECIMAL},
+      collection_reduce_interest = #{collectionReduceInterest,jdbcType=DECIMAL},
+      collection_reduce_penalty = #{collectionReducePenalty,jdbcType=DECIMAL},
+      actual_repayment_principal = #{actualRepaymentPrincipal,jdbcType=DECIMAL},
+      actual_repayment_handling_charge = #{actualRepaymentHandlingCharge,jdbcType=DECIMAL},
+      actual_repayment_interest = #{actualRepaymentInterest,jdbcType=DECIMAL},
+      actual_repayment_penalty = #{actualRepaymentPenalty,jdbcType=DECIMAL},
+      actual_prepayment_penalty = #{actualPrepaymentPenalty,jdbcType=DECIMAL},
+      actual_repayment_total = #{actualRepaymentTotal,jdbcType=DECIMAL},
+      version = #{version,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      rtime = #{rtime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=BIGINT},
+      updater = #{updater,jdbcType=BIGINT},
+      isdel = #{isdel,jdbcType=SMALLINT},
+      periods = #{periods,jdbcType=SMALLINT},
+      channel = #{channel,jdbcType=VARCHAR},
+      third_account_id = #{thirdAccountId,jdbcType=VARCHAR},
+      third_charge = #{thirdCharge,jdbcType=DECIMAL},
+      platform_charge = #{platformCharge,jdbcType=DECIMAL},
+      is_compensatory = #{isCompensatory,jdbcType=INTEGER},
+      compensatory_time = #{compensatoryTime,jdbcType=TIMESTAMP},
+      combination_fee = #{combinationFee,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="getOverdueCount" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    select count(1) from loan_repayment_plan
+    where user_id =#{userId}
+    and isdel=0
+    and overdue_days>0
+  </select>
+
+</mapper>

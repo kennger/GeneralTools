@@ -35,8 +35,8 @@ public class NativeSMSDomain implements SMSDomain  {
         smsService.updateContentTitle();
     }
 
-    public List<String> getAllOfSMSUserId(){
+    public List<String> getAllOfSMSUserId(int start ){
 
-        return smsService.getAllOfSMSUserId();
+        return smsService.getAllOfSMSUserId(start);
     }
 }

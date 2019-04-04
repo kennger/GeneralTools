@@ -14,7 +14,7 @@ public interface SMSDomain {
 
     void updateContentTitle();
 
-    List<String> getAllOfSMSUserId ();
+    List<String> getAllOfSMSUserId (int start );
 
 
 }
