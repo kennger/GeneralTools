@@ -19,7 +19,7 @@ public class LoanPlatformParse {
             String [] perPlats =str.split(",");
             for(int i=0;i<perPlats.length;i++){
                 String perPlat = perPlats[i].replace(" ","");
-                if(cashLoanPlatList.contains(perPlat)&&!perPlat.equals("360")){
+                if(cashLoanPlatList.contains(perPlat)&&!perPlat.equals("360")&&!perPlat.equals("")){
                     count++;
                     list.add(perPlat);
                 }
@@ -35,7 +35,7 @@ public class LoanPlatformParse {
         try { // 防止文件建立或读取失败，用catch捕捉错误并打印，也可以throw
 
             /* 读入TXT文件 */
-            String pathname = "C:\\Users\\admin\\Desktop\\loanPlatform.txt"; // 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径
+            String pathname = "D:\\Kettle\\user_sms_loan_platform.txt"; // 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径
             File filename = new File(pathname); // 要读取以上路径的input。txt文件
             InputStreamReader reader = new InputStreamReader(
                     new FileInputStream(filename)); // 建立一个输入流对象reader
@@ -50,10 +50,13 @@ public class LoanPlatformParse {
             LoanPlatformParse loanPlatformParse = new LoanPlatformParse();
             while (line != null) {
                 line = br.readLine(); // 一次读入一行数据
-                String [] lineSpilt =line.split("\t");
+                String [] lineSpilt =line.split(" ");
                 userId = lineSpilt[0];
-                platforms = lineSpilt[1];
-                String result = loanPlatformParse.getCashLoanPlatInfo(platforms);
+                String result=null;
+                if(lineSpilt.length>1) {
+                    platforms = lineSpilt[1];
+                    result = loanPlatformParse.getCashLoanPlatInfo(platforms);
+                }
                 i++;
                 System.out.println(i+" "+userId+" "+result);
 
@@ -62,7 +65,7 @@ public class LoanPlatformParse {
 //                    break;
 //                }
                 /* 写入Txt文件 */
-                File writename = new File("C:\\Users\\Administrator\\Desktop\\loanPlatform.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
+                File writename = new File("C:\\Users\\Administrator\\Desktop\\loanPlatform0508.txt"); // 相对路径，如果没有则要建立一个新的output。txt文件
                 writename.createNewFile(); // 创建新文件
                 BufferedWriter out = new BufferedWriter(new FileWriter(writename,true));
                 out.write(i+"///"+userId+"///"+result+ "\r\n"); // \r\n即为换行
@@ -75,5 +78,10 @@ public class LoanPlatformParse {
             e.printStackTrace();
         }
 
+
+
+//        String s=",中国人寿,捷信公司,马上消费金融";
+//        LoanPlatformParse loanPlatformParse = new LoanPlatformParse();
+//        System.out.println(loanPlatformParse.getCashLoanPlatInfo(s));
     }
 }
